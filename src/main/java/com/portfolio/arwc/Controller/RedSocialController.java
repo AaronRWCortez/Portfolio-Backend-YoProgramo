@@ -1,0 +1,55 @@
+package com.portfolio.arwc.Controller;
+
+import com.portfolio.arwc.Entity.RedSocial;
+import com.portfolio.arwc.Interface.IRedSocialService;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@CrossOrigin (origins = "http://localhost:4200")
+public class RedSocialController {
+    @Autowired IRedSocialService iRedSocialService;
+    
+    @GetMapping("/redes-sociales/traer")
+    public List<RedSocial> getRedSocial(){
+        return iRedSocialService.getRedSocial();
+    }
+    
+    @GetMapping("/redes-sociales/traer/{id}")
+    public RedSocial getRedSocialID(@PathVariable Long id){
+        return iRedSocialService.findRedSocial(id);   
+    }
+    
+    @PostMapping("/redes-sociales/crear")
+    public RedSocial createRedSocial(@RequestBody RedSocial redSocial){
+        iRedSocialService.saveRedSocial(redSocial);
+        return redSocial;
+    }
+    
+    @DeleteMapping("/redes-sociales/borrar/{id}")
+    public Long deleteRedSocial(@PathVariable Long id){
+        iRedSocialService.deleteRedSocial(id);
+        return id;
+    }
+    
+    @PutMapping("/redes-sociales/editar/{id}")
+    public RedSocial editRedSocial(
+            @PathVariable Long id, @RequestBody RedSocial p){
+        RedSocial redSocial = iRedSocialService.findRedSocial(id);
+        redSocial.setTitulo(p.getTitulo());
+        redSocial.setEnlace(p.getEnlace());
+        redSocial.setImg(p.getImg());
+        
+        
+        iRedSocialService.saveRedSocial(redSocial);
+        return redSocial;
+    }
+}
