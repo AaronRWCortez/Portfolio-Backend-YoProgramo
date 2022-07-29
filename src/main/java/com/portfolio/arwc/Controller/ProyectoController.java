@@ -3,6 +3,7 @@ package com.portfolio.arwc.Controller;
 import com.portfolio.arwc.Entity.Proyecto;
 import com.portfolio.arwc.Interface.IProyectoService;
 import java.util.List;
+import javax.annotation.security.RolesAllowed;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -28,18 +29,21 @@ public class ProyectoController {
         return iProyectoService.findProyecto(id);   
     }
     
+    @RolesAllowed({"ROLE_ADMIN"})
     @PostMapping("/proyectos/crear")
     public Proyecto createProyecto(@RequestBody Proyecto proyecto){
         iProyectoService.saveProyecto(proyecto);
         return proyecto;
     }
     
+    @RolesAllowed({"ROLE_ADMIN"})
     @DeleteMapping("/proyectos/borrar/{id}")
     public Long deleteProyecto(@PathVariable Long id){
         iProyectoService.deleteProyecto(id);
         return id;
     }
     
+    @RolesAllowed({"ROLE_ADMIN"})
     @PutMapping("/proyectos/editar/{id}")
     public Proyecto editProyecto(
             @PathVariable Long id, @RequestBody Proyecto p){

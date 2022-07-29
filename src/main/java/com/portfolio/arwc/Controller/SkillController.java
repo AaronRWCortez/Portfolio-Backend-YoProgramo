@@ -3,6 +3,7 @@ package com.portfolio.arwc.Controller;
 import com.portfolio.arwc.Entity.Skill;
 import com.portfolio.arwc.Interface.ISkillService;
 import java.util.List;
+import javax.annotation.security.RolesAllowed;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -28,18 +29,21 @@ public class SkillController {
         return iSkillService.findSkill(id);   
     }
     
+    @RolesAllowed({"ROLE_ADMIN"})
     @PostMapping("/skills/crear")
     public Skill createSkill(@RequestBody Skill skill){
         iSkillService.saveSkill(skill);
         return skill;
     }
     
+    @RolesAllowed({"ROLE_ADMIN"})
     @DeleteMapping("/skills/borrar/{id}")
     public Long deleteSkill(@PathVariable Long id){
         iSkillService.deleteSkill(id);
         return id;
     }
     
+    @RolesAllowed({"ROLE_ADMIN"})
     @PutMapping("/skills/editar/{id}")
     public Skill editSkill(
             @PathVariable Long id, @RequestBody Skill p){

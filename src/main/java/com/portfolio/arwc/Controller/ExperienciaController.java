@@ -3,6 +3,7 @@ package com.portfolio.arwc.Controller;
 import com.portfolio.arwc.Entity.Experiencia;
 import com.portfolio.arwc.Interface.IExperienciaService;
 import java.util.List;
+import javax.annotation.security.RolesAllowed;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -28,18 +29,21 @@ public class ExperienciaController {
         return iExperienciaService.findExperiencia(id);   
     }
     
+    @RolesAllowed({"ROLE_ADMIN"})
     @PostMapping("/experiencias/crear")
     public Experiencia createExperiencia(@RequestBody Experiencia experiencia){
         iExperienciaService.saveExperiencia(experiencia);
         return experiencia;
     }
     
+    @RolesAllowed({"ROLE_ADMIN"})
     @DeleteMapping("/experiencias/borrar/{id}")
     public Long deleteExperiencia(@PathVariable Long id){
         iExperienciaService.deleteExperiencia(id);
         return id;
     }
     
+    @RolesAllowed({"ROLE_ADMIN"})
     @PutMapping("/experiencias/editar/{id}")
     public Experiencia editExperiencia(
             @PathVariable Long id, @RequestBody Experiencia p){

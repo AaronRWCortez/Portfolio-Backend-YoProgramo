@@ -3,6 +3,7 @@ package com.portfolio.arwc.Controller;
 import com.portfolio.arwc.Entity.Educacion;
 import com.portfolio.arwc.Interface.IEducacionService;
 import java.util.List;
+import javax.annotation.security.RolesAllowed;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -28,18 +29,21 @@ public class EducacionController {
         return iEducacionService.findEducacion(id);   
     }
     
+    @RolesAllowed({"ROLE_ADMIN"})
     @PostMapping("/educaciones/crear")
     public Educacion createEducacion(@RequestBody Educacion educacion){
         iEducacionService.saveEducacion(educacion);
         return educacion;
     }
     
+    @RolesAllowed({"ROLE_ADMIN"})
     @DeleteMapping("/educaciones/borrar/{id}")
     public Long deleteEducacion(@PathVariable Long id){
         iEducacionService.deleteEducacion(id);
         return id;
     }
     
+    @RolesAllowed({"ROLE_ADMIN"})
     @PutMapping("/educaciones/editar/{id}")
     public Educacion editEducacion(
             @PathVariable Long id, @RequestBody Educacion p){

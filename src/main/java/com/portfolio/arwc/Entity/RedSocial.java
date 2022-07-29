@@ -26,5 +26,5 @@ public class RedSocial {
     private String enlace;
     
     @Size(min = 1)
-    private String img;
+    private String img; 
 }

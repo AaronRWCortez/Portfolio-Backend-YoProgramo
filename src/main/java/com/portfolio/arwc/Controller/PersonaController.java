@@ -3,6 +3,7 @@ package com.portfolio.arwc.Controller;
 import com.portfolio.arwc.Entity.Persona;
 import com.portfolio.arwc.Interface.IPersonaService;
 import java.util.List;
+import javax.annotation.security.RolesAllowed;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -27,19 +28,22 @@ public class PersonaController {
     public Persona getPersonaID(@PathVariable Long id){
         return iPersonaService.findPersona(id);   
     }
-    
+
+    @RolesAllowed({"ROLE_ADMIN"})
     @PostMapping("/personas/crear")
     public Persona createPersona(@RequestBody Persona persona){
         iPersonaService.savePersona(persona);
         return persona;
     }
     
+    @RolesAllowed({"ROLE_ADMIN"})
     @DeleteMapping("/personas/borrar/{id}")
     public Long deletePersona(@PathVariable Long id){
         iPersonaService.deletePersona(id);
         return id;
     }
     
+    @RolesAllowed({"ROLE_ADMIN"})
     @PutMapping("/personas/editar/{id}")
     public Persona editPersona(
             @PathVariable Long id, @RequestBody Persona p){
@@ -50,6 +54,7 @@ public class PersonaController {
         persona.setLocalidad(p.getLocalidad());
         persona.setDescripcion(p.getDescripcion());
         persona.setImg(p.getImg());
+        persona.setBanner(p.getBanner());
         
         
         iPersonaService.savePersona(persona);
