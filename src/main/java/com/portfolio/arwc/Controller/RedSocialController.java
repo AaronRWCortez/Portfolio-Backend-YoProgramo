@@ -29,6 +29,11 @@ public class RedSocialController {
         return iRedSocialService.findRedSocial(id);   
     }
     
+        @GetMapping("/redes-sociales/traer/persona/{id}")
+    public  List<RedSocial> getRedSocialByUser(@PathVariable Long id){
+        return iRedSocialService.getRedSocialByPersonaID(id);   
+    }
+    
     @RolesAllowed({"ROLE_ADMIN"})
     @PostMapping("/redes-sociales/crear")
     public RedSocial createRedSocial(@RequestBody RedSocial redSocial){
@@ -51,6 +56,7 @@ public class RedSocialController {
         redSocial.setTitulo(p.getTitulo());
         redSocial.setEnlace(p.getEnlace());
         redSocial.setImg(p.getImg());
+        redSocial.setPersona(p.getPersona());
         
         
         iRedSocialService.saveRedSocial(redSocial);

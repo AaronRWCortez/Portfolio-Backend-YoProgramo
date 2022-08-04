@@ -33,5 +33,11 @@ public class ImpProyectoService implements IProyectoService{
         Proyecto proyecto = iProyectoRepository.findById(id).orElse(null);
         return proyecto;
     }
+
+    @Override
+    public List<Proyecto> getProyectoByPersonaID(Long id) {
+            List<Proyecto> lista = iProyectoRepository.findAllByPersona_Id(id);
+    return lista;
+    }
     
 }

@@ -15,38 +15,45 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin (origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200")
 public class ExperienciaController {
-    @Autowired IExperienciaService iExperienciaService;
-    
+
+    @Autowired
+    IExperienciaService iExperienciaService;
+
     @GetMapping("/experiencias/traer")
-    public List<Experiencia> getExperiencia(){
+    public List<Experiencia> getExperiencia() {
         return iExperienciaService.getExperiencia();
     }
-    
+
     @GetMapping("/experiencias/traer/{id}")
-    public Experiencia getExperienciaID(@PathVariable Long id){
-        return iExperienciaService.findExperiencia(id);   
+    public Experiencia getExperienciaID(@PathVariable Long id) {
+        return iExperienciaService.findExperiencia(id);
     }
-    
+
+    @GetMapping("/experiencias/traer/persona/{id}")
+    public List<Experiencia> getExperienciaByUser(@PathVariable Long id) {
+        return iExperienciaService.getExperienciaByPersonaID(id);
+    }
+
     @RolesAllowed({"ROLE_ADMIN"})
     @PostMapping("/experiencias/crear")
-    public Experiencia createExperiencia(@RequestBody Experiencia experiencia){
+    public Experiencia createExperiencia(@RequestBody Experiencia experiencia) {
         iExperienciaService.saveExperiencia(experiencia);
         return experiencia;
     }
-    
+
     @RolesAllowed({"ROLE_ADMIN"})
     @DeleteMapping("/experiencias/borrar/{id}")
-    public Long deleteExperiencia(@PathVariable Long id){
+    public Long deleteExperiencia(@PathVariable Long id) {
         iExperienciaService.deleteExperiencia(id);
         return id;
     }
-    
+
     @RolesAllowed({"ROLE_ADMIN"})
     @PutMapping("/experiencias/editar/{id}")
     public Experiencia editExperiencia(
-            @PathVariable Long id, @RequestBody Experiencia p){
+            @PathVariable Long id, @RequestBody Experiencia p) {
         Experiencia experiencia = iExperienciaService.findExperiencia(id);
         experiencia.setLugar(p.getLugar());
         experiencia.setPuesto(p.getPuesto());
@@ -54,8 +61,9 @@ public class ExperienciaController {
         experiencia.setEndDate(p.getEndDate());
         experiencia.setDescripcion(p.getDescripcion());
         experiencia.setImg(p.getImg());
-        
-        
+        experiencia.setImgBool(p.getImgBool());
+        experiencia.setPersona(p.getPersona());
+
         iExperienciaService.saveExperiencia(experiencia);
         return experiencia;
     }

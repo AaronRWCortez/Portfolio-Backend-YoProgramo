@@ -29,6 +29,11 @@ public class EducacionController {
         return iEducacionService.findEducacion(id);   
     }
     
+    @GetMapping("/educaciones/traer/persona/{id}")
+    public List<Educacion> getEducacionByUser(@PathVariable Long id) {
+        return iEducacionService.getEducacionByPersonaID(id);
+    }
+    
     @RolesAllowed({"ROLE_ADMIN"})
     @PostMapping("/educaciones/crear")
     public Educacion createEducacion(@RequestBody Educacion educacion){
@@ -54,6 +59,8 @@ public class EducacionController {
         educacion.setEndDate(p.getEndDate());
         educacion.setDescripcion(p.getDescripcion());
         educacion.setImg(p.getImg());
+        educacion.setImgBool(p.getImgBool());
+        educacion.setPersona(p.getPersona());
         
         
         iEducacionService.saveEducacion(educacion);

@@ -33,6 +33,11 @@ public class InfoContactoController {
         return iInfoContactoService.findInfoContacto(id);   
     }
     
+    @GetMapping("/infoContacto/traer/persona/{id}")
+    public  List<InfoContacto> getInfoContactoByUser(@PathVariable Long id){
+        return iInfoContactoService.getInfoContactoByPersonaID(id);   
+    }
+    
     @RolesAllowed({"ROLE_ADMIN"})
     @PostMapping("/infoContacto/crear")
     public InfoContacto createInfoContacto(@RequestBody InfoContacto infoContacto){
@@ -55,6 +60,7 @@ public class InfoContactoController {
         infoContacto.setNombre(p.getNombre());
         infoContacto.setValor(p.getValor());
         infoContacto.setVisibilidad(p.getVisibilidad());
+        infoContacto.setPersona(p.getPersona());
 
         
         

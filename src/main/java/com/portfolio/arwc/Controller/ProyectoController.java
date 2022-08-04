@@ -29,6 +29,11 @@ public class ProyectoController {
         return iProyectoService.findProyecto(id);   
     }
     
+    @GetMapping("/proyectos/traer/persona/{id}")
+    public  List<Proyecto> getProyectoByUser(@PathVariable Long id){
+        return iProyectoService.getProyectoByPersonaID(id);   
+    }
+    
     @RolesAllowed({"ROLE_ADMIN"})
     @PostMapping("/proyectos/crear")
     public Proyecto createProyecto(@RequestBody Proyecto proyecto){
@@ -53,6 +58,7 @@ public class ProyectoController {
         proyecto.setEnlace(p.getEnlace());
         proyecto.setDescripcion(p.getDescripcion());
         proyecto.setImg(p.getImg());
+        proyecto.setPersona(p.getPersona());
         
         
         iProyectoService.saveProyecto(proyecto);

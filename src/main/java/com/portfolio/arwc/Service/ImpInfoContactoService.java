@@ -34,4 +34,9 @@ public class ImpInfoContactoService implements IInfoContactoService{
         return infoContacto;
     }
     
+    @Override
+    public List<InfoContacto> getInfoContactoByPersonaID(Long id){
+    List<InfoContacto> lista = iInfoContactoRepository.findAllByPersona_Id(id);
+    return lista;
+    }
 }

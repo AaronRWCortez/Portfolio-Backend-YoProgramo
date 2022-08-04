@@ -15,6 +15,8 @@ public interface IInfoContactoService {
             //Traer una lista Educacions
     public List<InfoContacto> getInfoContacto();
     
+    public List<InfoContacto> getInfoContactoByPersonaID(Long id);
+    
     //Guardar un objeto
     public void saveInfoContacto(InfoContacto infoContacto);
     

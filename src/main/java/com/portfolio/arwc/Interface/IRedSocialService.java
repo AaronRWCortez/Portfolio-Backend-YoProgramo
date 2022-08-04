@@ -10,6 +10,8 @@ public interface IRedSocialService {
     //Guardar un objeto de tipo logo
     public void saveRedSocial(RedSocial redSocial);
     
+    public List<RedSocial> getRedSocialByPersonaID(Long id);
+    
     //Eliminar objeto por ID
     public void deleteRedSocial(Long id);
     

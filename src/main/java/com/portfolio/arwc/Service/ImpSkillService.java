@@ -34,4 +34,10 @@ public class ImpSkillService implements ISkillService{
         return skill;
     }
     
+    @Override
+    public List<Skill> getSkillsByPersonaID(Long id){
+    List<Skill> skill = iSkillRepository.findAllByPersona_Id(id);
+    return skill;
+    }
+    
 }

@@ -7,6 +7,8 @@ public interface IEducacionService {
     //Traer una lista Educacions
     public List<Educacion> getEducacion();
     
+    public List<Educacion> getEducacionByPersonaID(Long id);
+    
     //Guardar un objeto
     public void saveEducacion(Educacion educacion);
     

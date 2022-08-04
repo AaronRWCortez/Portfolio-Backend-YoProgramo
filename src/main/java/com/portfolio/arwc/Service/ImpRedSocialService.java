@@ -34,4 +34,10 @@ public class ImpRedSocialService implements IRedSocialService{
         return redSocial;
     }
     
+    @Override
+    public List<RedSocial> getRedSocialByPersonaID(Long id){
+    List<RedSocial> lista = iRedSocialRepository.findAllByPersona_Id(id);
+    return lista;
+    }
+    
 }

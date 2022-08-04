@@ -37,9 +37,11 @@ public class Persona {
     @Size(min = 1, max = 500, message = "no cumple con la longitud")
     private String descripcion;
     
+    @NotNull
     @Size(min = 1)
     private String img;
     
+    @NotNull
     @Size(min = 1)
     private String banner;
     

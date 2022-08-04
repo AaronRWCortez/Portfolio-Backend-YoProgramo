@@ -29,6 +29,11 @@ public class SkillController {
         return iSkillService.findSkill(id);   
     }
     
+    @GetMapping("/skills/traer/persona/{id}")
+    public  List<Skill> getSkillByUser(@PathVariable Long id){
+        return iSkillService.getSkillsByPersonaID(id);   
+    }
+    
     @RolesAllowed({"ROLE_ADMIN"})
     @PostMapping("/skills/crear")
     public Skill createSkill(@RequestBody Skill skill){
@@ -53,6 +58,7 @@ public class SkillController {
         skill.setColor(p.getColor());
         skill.setColorgr(p.getColorgr());
         skill.setImg(p.getImg());
+        skill.setPersona(p.getPersona());
         
         
         iSkillService.saveSkill(skill);

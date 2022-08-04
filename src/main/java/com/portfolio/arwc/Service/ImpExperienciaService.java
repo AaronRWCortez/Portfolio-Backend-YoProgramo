@@ -1,4 +1,3 @@
-
 package com.portfolio.arwc.Service;
 
 import com.portfolio.arwc.Entity.Experiencia;
@@ -9,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ImpExperienciaService implements IExperienciaService{
-    @Autowired IExperienciaRepository iExperienciaRepository;
+public class ImpExperienciaService implements IExperienciaService {
+
+    @Autowired
+    IExperienciaRepository iExperienciaRepository;
 
     @Override
     public List<Experiencia> getExperiencia() {
@@ -33,5 +34,11 @@ public class ImpExperienciaService implements IExperienciaService{
         Experiencia experiencia = iExperienciaRepository.findById(id).orElse(null);
         return experiencia;
     }
-    
+
+    @Override
+    public List<Experiencia> getExperienciaByPersonaID(Long id) {
+        List<Experiencia> lista = iExperienciaRepository.findAllByPersona_Id(id);
+        return lista;
+    }
+
 }

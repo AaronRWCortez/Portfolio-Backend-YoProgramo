@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ImpEducacionService implements IEducacionService{
-    @Autowired IEducacionRepository iEducacionRepository;
+public class ImpEducacionService implements IEducacionService {
+
+    @Autowired
+    IEducacionRepository iEducacionRepository;
 
     @Override
     public List<Educacion> getEducacion() {
@@ -32,5 +34,11 @@ public class ImpEducacionService implements IEducacionService{
         Educacion educacion = iEducacionRepository.findById(id).orElse(null);
         return educacion;
     }
-    
+
+    @Override
+    public List<Educacion> getEducacionByPersonaID(Long id) {
+        List<Educacion> lista = iEducacionRepository.findAllByPersona_Id(id);
+        return lista;
+    }
+
 }

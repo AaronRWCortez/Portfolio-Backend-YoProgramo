@@ -7,6 +7,8 @@ public interface IExperienciaService {
     //Traer una lista Experiencias
     public List<Experiencia> getExperiencia();
     
+    public List<Experiencia> getExperienciaByPersonaID(Long id);
+    
     //Guardar un objeto
     public void saveExperiencia(Experiencia experiencia);
     

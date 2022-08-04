@@ -7,6 +7,8 @@ public interface IProyectoService {
     //Traer una lista Proyectos
     public List<Proyecto> getProyecto();
     
+    public List<Proyecto> getProyectoByPersonaID(Long id);
+    
     //Guardar un objeto de tipo logo
     public void saveProyecto(Proyecto proyecto);
     
