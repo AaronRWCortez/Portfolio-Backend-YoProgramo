@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin
+@CrossOrigin (origins = "https://frontend-arwc.web.app")
 public class SkillController {
     @Autowired ISkillService iSkillService;
     
