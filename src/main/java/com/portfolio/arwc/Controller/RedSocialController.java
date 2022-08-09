@@ -34,21 +34,21 @@ public class RedSocialController {
         return iRedSocialService.getRedSocialByPersonaID(id);   
     }
     
-    @RolesAllowed({"ROLE_ADMIN"})
+
     @PostMapping("/redes-sociales/crear")
     public RedSocial createRedSocial(@RequestBody RedSocial redSocial){
         iRedSocialService.saveRedSocial(redSocial);
         return redSocial;
     }
     
-    @RolesAllowed({"ROLE_ADMIN"})
+
     @DeleteMapping("/redes-sociales/borrar/{id}")
     public Long deleteRedSocial(@PathVariable Long id){
         iRedSocialService.deleteRedSocial(id);
         return id;
     }
     
-    @RolesAllowed({"ROLE_ADMIN"})
+
     @PutMapping("/redes-sociales/editar/{id}")
     public RedSocial editRedSocial(
             @PathVariable Long id, @RequestBody RedSocial p){

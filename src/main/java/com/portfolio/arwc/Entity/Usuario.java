@@ -2,40 +2,36 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.portfolio.arwc.Security.Entity;
+package com.portfolio.arwc.Entity;
 
-import com.portfolio.arwc.Security.Enums.RolNombre;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
-
+/**
+ *
+ * @author Aaron
+ */
 @Getter @Setter
 @Entity
-public class Rol {
+public class Usuario {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     
     @NotNull
-    @Enumerated(EnumType.STRING)
-    private RolNombre rolNombre;
+    @Size(min = 1, max = 50, message = "no cumple con la longitud")
+    private String username;
     
-    //Constructor
-
-    public Rol() {
-    }
-
-    public Rol(RolNombre rolNombre) {
-        this.rolNombre = rolNombre;
-    }
-    
-    
-    
+    @NotNull
+    @Size(min = 1, max = 50, message = "no cumple con la longitud")
+    private String password;
+            
+     
 }

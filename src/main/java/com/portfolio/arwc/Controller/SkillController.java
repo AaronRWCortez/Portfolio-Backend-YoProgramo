@@ -34,21 +34,21 @@ public class SkillController {
         return iSkillService.getSkillsByPersonaID(id);   
     }
     
-    @RolesAllowed({"ROLE_ADMIN"})
+
     @PostMapping("/skills/crear")
     public Skill createSkill(@RequestBody Skill skill){
         iSkillService.saveSkill(skill);
         return skill;
     }
     
-    @RolesAllowed({"ROLE_ADMIN"})
+
     @DeleteMapping("/skills/borrar/{id}")
     public Long deleteSkill(@PathVariable Long id){
         iSkillService.deleteSkill(id);
         return id;
     }
     
-    @RolesAllowed({"ROLE_ADMIN"})
+
     @PutMapping("/skills/editar/{id}")
     public Skill editSkill(
             @PathVariable Long id, @RequestBody Skill p){
